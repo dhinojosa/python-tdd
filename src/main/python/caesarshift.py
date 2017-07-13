@@ -1,3 +1,5 @@
+SMALL_A = 97
+SMALL_Z = 122
 
 
 class CaesarShift:
@@ -5,11 +7,7 @@ class CaesarShift:
         self.shift = shift
 
     def encode(self, string):
-        # get the first char
-        # shift if by self.shift
-        # return result
-        # https://github.com/dhinojosa/python-tdd
         if string == "":
             return ""
         elif string:
-            return chr(ord(string[0]) + self.shift)
+            return chr((ord(string[0]) + self.shift - SMALL_A) % 26 + SMALL_A)
