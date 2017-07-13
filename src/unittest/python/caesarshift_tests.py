@@ -11,6 +11,7 @@ class CaesarShiftTest(unittest.TestCase):
            The simplest test is an empty string and zero
 
     """
+
     # Red Bar
     @staticmethod
     def test_empty_string_with_shift_of_zero():
@@ -20,7 +21,7 @@ class CaesarShiftTest(unittest.TestCase):
 
     # Red Bar
     @staticmethod
-    def test_empty_string_with_shift_of_one():
+    def test_letter_a_with_shift_of_zero():
         caesar_shift = CaesarShift(0)
         result = caesar_shift.encode("a")
         assert_that(result, equal_to("a"))
@@ -31,3 +32,5 @@ class CaesarShiftTest(unittest.TestCase):
         caesar_shift = CaesarShift(1)
         result = caesar_shift.encode("a")
         assert_that(result, equal_to("b"))
+
+        # TODO: Problem will be when....

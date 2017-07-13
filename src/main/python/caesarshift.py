@@ -2,10 +2,14 @@
 
 class CaesarShift:
     def __init__(self, shift):
-        pass
+        self.shift = shift
 
     def encode(self, string):
         # get the first char
         # shift if by self.shift
         # return result
-        return string
+        # https://github.com/dhinojosa/python-tdd
+        if string == "":
+            return ""
+        elif string:
+            return chr(ord(string[0]) + self.shift)
