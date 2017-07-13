@@ -2,7 +2,7 @@ import unittest
 
 from hamcrest import *
 
-from caesarshift import CaesarShift
+from caesarshift import CaesarShift, CAN_ONLY_BE_A_NUMBER_MSG
 
 
 class CaesarShiftTest(unittest.TestCase):
@@ -47,3 +47,26 @@ class CaesarShiftTest(unittest.TestCase):
         result = caesar_shift.encode("z")
         assert_that(result, equal_to("z"))
 
+    # Green Bar
+    @staticmethod
+    def test_letter_z_with_shift_of_28():
+        caesar_shift = CaesarShift(28)
+        result = caesar_shift.encode("z")
+        assert_that(result, equal_to("b"))
+
+    # Red Bar
+    def test_giving_a_string_for_a_shift(self):
+        try:
+            CaesarShift("WOW")
+            self.fail("This should not pass")
+        except Exception as e:
+            assert_that(e.message, equal_to(CAN_ONLY_BE_A_NUMBER_MSG))
+
+    # Red Bar
+    def test_encode_with_different_type(self):
+        try:
+            caesar_shift = CaesarShift(1)
+            caesar_shift.encode(49)
+            self.fail("This should not pass")
+        except Exception as e:
+            assert_that(e.message, equal_to("Parameter can only be a string"))
