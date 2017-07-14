@@ -94,15 +94,52 @@ class CaesarShiftTest(unittest.TestCase):
 
     # Red Bar
     @staticmethod
-    def test_letter_a_decode_with_shift_of_one():
+    def test_letter_f_decode_with_shift_of_one():
         caesar_shift = CaesarShift(1)
         result = caesar_shift.decode("f")
         assert_that(result, equal_to("e"))
 
+    # Red Bar
+    def test_decode_with_different_type(self):
+        try:
+            caesar_shift = CaesarShift(1)
+            caesar_shift.decode(49)
+            self.fail("This should not pass")
+        except Exception as e:
+            assert_that(e.message, equal_to(CAN_ONLY_BE_A_STRING_MSG))
 
+    # Green Bar
+    @staticmethod
+    def test_letter_a_decode_with_shift_of_one():
+        caesar_shift = CaesarShift(5)
+        result = caesar_shift.decode("c")
+        assert_that(result, equal_to("x"))
 
+    # Red Bar
+    @staticmethod
+    def test_a_word_a_shift_of_one():
+        caesar_shift = CaesarShift(1)
+        result = caesar_shift.decode("ifmmp")
+        assert_that(result, equal_to("hello"))
 
+    # Red Bar
+    @staticmethod
+    def test_letter_capital_a_with_encode_of_one():
+        caesar_shift = CaesarShift(1)
+        result = caesar_shift.encode("A")
+        assert_that(result, equal_to("B"))
 
-    #Oh oh capital letters
-    #Strange characters?
-    #decode
+    # Green Bar
+    @staticmethod
+    def test_letter_capital_a_with_decode_of_one():
+        caesar_shift = CaesarShift(1)
+        result = caesar_shift.decode("A")
+        assert_that(result, equal_to("Z"))
+
+    # Red Bar
+    @staticmethod
+    def test_a_decode_of_strange_character_decode_of_one():
+        caesar_shift = CaesarShift(1)
+        result = caesar_shift.decode("?")
+        assert_that(result, equal_to("?"))
+
