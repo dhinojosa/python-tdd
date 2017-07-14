@@ -15,11 +15,7 @@ class CaesarShift:
         return chr((ord(string[0]) + self.shift - SMALL_A) % 26 + SMALL_A)
 
     def decode_char(self, string, new_shift):
-        a = (ord(string[0]) + new_shift - SMALL_A) % 26 + SMALL_A
-        if a < 97:
-            return "Z"
-        else:
-            return chr(a)
+        return chr((ord(string[0]) + new_shift - SMALL_A) % 26 + SMALL_A)
 
     def encode(self, string):
         if not isinstance(string, str):
