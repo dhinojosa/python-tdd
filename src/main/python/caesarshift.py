@@ -11,7 +11,8 @@ class CaesarShift:
             raise Exception(CAN_ONLY_BE_A_NUMBER_MSG)
         self.shift = shift
 
-    def __shift_char(self, char, new_shift):
+    @staticmethod
+    def __shift_char(char, new_shift):
         if not char.isalpha():
             return char
         a = BIG_A if char.isupper() else SMALL_A
