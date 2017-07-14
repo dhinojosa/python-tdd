@@ -2,7 +2,7 @@ import unittest
 
 from hamcrest import *
 
-from caesarshift import CaesarShift, CAN_ONLY_BE_A_NUMBER_MSG
+from caesarshift import CaesarShift, CAN_ONLY_BE_A_NUMBER_MSG, CAN_ONLY_BE_A_STRING_MSG
 
 
 class CaesarShiftTest(unittest.TestCase):
@@ -69,4 +69,40 @@ class CaesarShiftTest(unittest.TestCase):
             caesar_shift.encode(49)
             self.fail("This should not pass")
         except Exception as e:
-            assert_that(e.message, equal_to("Parameter can only be a string"))
+            assert_that(e.message, equal_to(CAN_ONLY_BE_A_STRING_MSG))
+
+    # Red Bar
+    @staticmethod
+    def test_a_word_a_shift_of_one():
+        caesar_shift = CaesarShift(1)
+        result = caesar_shift.encode("hello")
+        assert_that(result, equal_to("ifmmp"))
+
+    # Red Bar
+    @staticmethod
+    def test_empty_string_decode_with_shift_of_zero():
+        caesar_shift = CaesarShift(0)
+        result = caesar_shift.decode("")
+        assert_that(result, equal_to(""))
+
+    # Red Bar
+    @staticmethod
+    def test_letter_a_decode_with_shift_of_zero():
+        caesar_shift = CaesarShift(0)
+        result = caesar_shift.decode("a")
+        assert_that(result, equal_to("a"))
+
+    # Red Bar
+    @staticmethod
+    def test_letter_a_decode_with_shift_of_one():
+        caesar_shift = CaesarShift(1)
+        result = caesar_shift.decode("f")
+        assert_that(result, equal_to("e"))
+
+
+
+
+
+    #Oh oh capital letters
+    #Strange characters?
+    #decode
